@@ -37,6 +37,8 @@
             filesLocationButton = new Button();
             filesLocationLabel = new Label();
             restoreButton = new Button();
+            overwriteCB = new CheckBox();
+            unselectButton = new Button();
             SuspendLayout();
             // 
             // fLabel
@@ -131,12 +133,35 @@
             restoreButton.TabIndex = 8;
             restoreButton.Text = "Restore";
             restoreButton.UseVisualStyleBackColor = true;
+            restoreButton.Click += restoreButton_Click;
+            // 
+            // overwriteCB
+            // 
+            overwriteCB.AutoSize = true;
+            overwriteCB.Location = new Point(29, 79);
+            overwriteCB.Name = "overwriteCB";
+            overwriteCB.Size = new Size(98, 25);
+            overwriteCB.TabIndex = 9;
+            overwriteCB.Text = "Overwrite";
+            overwriteCB.UseVisualStyleBackColor = true;
+            // 
+            // unselectButton
+            // 
+            unselectButton.Location = new Point(390, 74);
+            unselectButton.Name = "unselectButton";
+            unselectButton.Size = new Size(95, 32);
+            unselectButton.TabIndex = 10;
+            unselectButton.Text = "Unselect";
+            unselectButton.UseVisualStyleBackColor = true;
+            unselectButton.Click += unselectButton_Click;
             // 
             // Backup_Maker
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(866, 706);
+            Controls.Add(unselectButton);
+            Controls.Add(overwriteCB);
             Controls.Add(restoreButton);
             Controls.Add(filesLocationLabel);
             Controls.Add(filesLocationButton);
@@ -166,5 +191,7 @@
         private Button filesLocationButton;
         private Label filesLocationLabel;
         private Button restoreButton;
+        private CheckBox overwriteCB;
+        private Button unselectButton;
     }
 }
