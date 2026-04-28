@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Backup_Maker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="950" FontSize="15" MinWidth="670" MinHeight="200">
+        Title="Backup Maker" Height="500" Width="950" FontSize="15" MinWidth="670" MinHeight="200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
@@ -24,15 +24,35 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
-        <Label Content="Files Location" Name="filesLocationLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Grid.Row="1" Grid.Column="1"/>
-        <Button Content="Change files source" Name="filesLocationButton" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="4" MinWidth="150"/>
-        <Button Content="Restore" Name="restoreButton" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="5" MinWidth="80"/>
-        <Button Content="Delete selected files" Name="deleteButton" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="4" MinWidth="150"/>
-        <Button Content="Backup" Name="backupButton" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="5" MinWidth="80"/>
-        <Button Content="Unselect" Name="unselectButton" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="3" MinWidth="80"/>
-        <Label Content="Files" Name="fLabel" VerticalContentAlignment="Bottom"  HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="1"/>
-        <Label Content="Backups" Name="bLabel" VerticalContentAlignment="Bottom"  HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="4"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="filesList" Grid.Row="4" Grid.Column="1"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="backupsList" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3"/>
+        <TextBlock Text="Files Location" Name="filesLocationLabel"
+               Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="Files" Name="fLabel"  
+               Grid.Row="3" Grid.Column="1"/>
+        <TextBlock Text="Backups" Name="bLabel" 
+               Grid.Row="3" Grid.Column="4"/>
+        <Button Content="Change files source" Name="filesLocationButton" 
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                Grid.Row="1" Grid.Column="4" MinWidth="150"
+                Click="filesLocationButton_Click"/>
+        <Button Content="Restore" Name="restoreButton" 
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                Grid.Row="1" Grid.Column="5" MinWidth="80"
+                Click="restoreButton_Click"/>
+        <Button Content="Delete selected files" Name="deleteButton" 
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                Grid.Row="2" Grid.Column="4" MinWidth="150"
+                Click="deleteButton_Click"/>
+        <Button Content="Backup" Name="backupButton" 
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                Grid.Row="2" Grid.Column="5" MinWidth="80"
+                Click="backupButton_Click"/>
+        <Button Content="Unselect" Name="unselectButton" 
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                Grid.Row="2" Grid.Column="3" MinWidth="80"
+                Click="unselectButton_Click"/>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="filesList" 
+                 Grid.Row="4" Grid.Column="1"/>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="backupsList" 
+                 Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>
