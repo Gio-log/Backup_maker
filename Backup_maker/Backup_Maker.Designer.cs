@@ -175,7 +175,7 @@
             Margin = new Padding(4);
             Name = "Backup_Maker";
             Text = "Backup Maker";
-            Load += Form1_Load;
+            Load += BackupMaker_Load;
             ResumeLayout(false);
             PerformLayout();
         }

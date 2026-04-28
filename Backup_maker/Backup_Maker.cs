@@ -24,13 +24,21 @@ namespace Backup_maker
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void BackupMaker_Load(object sender, EventArgs e)
         {
             listBox_Load(filesList, filesLocationLabel.Text);
             if (Directory.Exists(filesLocationLabel.Text + "\\backup"))
             {
                 listBox_Load(backupsList, filesLocationLabel.Text + "\\backup");
             }
+        }
+
+        private void listBox_Load(ListBox list, string path)
+        {
+            list.Items.Clear();
+            int lengthF = path.Length + 1;
+            string[] files = Directory.GetFiles(path).Select(f => f.Remove(0, lengthF)).ToArray();
+            list.Items.AddRange(files);
         }
 
         private void backupButton_Click(object sender, EventArgs e)
@@ -41,13 +49,15 @@ namespace Backup_maker
             }
             copyFiles(filesList, filesLocationLabel.Text, filesLocationLabel.Text + "\\backup");
             listBox_Load(backupsList, filesLocationLabel.Text + "\\backup");
+            filesList.SelectedItem = null;
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
             deleteFiles(filesList, filesLocationLabel.Text);
             deleteFiles(backupsList, filesLocationLabel.Text + "\\backup");
-            Form1_Load(sender, e);
+            unselect();
+            BackupMaker_Load(sender, e);
         }
 
         private void fileLocationButton_Click(object sender, EventArgs e)
@@ -60,21 +70,19 @@ namespace Backup_maker
                 File.WriteAllText(appDataPath, folderBrowserDialog.SelectedPath);
                 filesLocationLabel.Text = folderBrowserDialog.SelectedPath;
             }
-            Form1_Load(sender, e);
-        }
-
-        private void listBox_Load(ListBox list, string path)
-        {
-            list.Items.Clear();
-            int lengthF = path.Length + 1;
-            string[] files = Directory.GetFiles(path).Select(f => f.Remove(0, lengthF)).ToArray();
-            list.Items.AddRange(files);
+            BackupMaker_Load(sender, e);
         }
 
         private void restoreButton_Click(object sender, EventArgs e)
         {
             copyFiles(backupsList, filesLocationLabel.Text + "\\backup", filesLocationLabel.Text);
             listBox_Load(filesList, filesLocationLabel.Text);
+            backupsList.SelectedItem = null;
+        }
+
+        private void unselectButton_Click(object sender, EventArgs e)
+        {
+            unselect();
         }
 
         private void copyFiles(ListBox list, string pathA, string pathB)
@@ -90,6 +98,7 @@ namespace Backup_maker
                 }
             }
         }
+
         private void deleteFiles(ListBox list, string path)
         {
             ListBox.SelectedObjectCollection selectedFiles = new ListBox.SelectedObjectCollection(list);
@@ -104,7 +113,7 @@ namespace Backup_maker
             }
         }
 
-        private void unselectButton_Click(object sender, EventArgs e)
+        private void unselect()
         {
             filesList.SelectedItem = null;
             backupsList.SelectedItem = null;
