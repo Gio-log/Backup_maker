@@ -9,11 +9,11 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="3*" MinWidth="310"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="1*" MinWidth="80"/>
-            <ColumnDefinition Width="1*" MinWidth="150"/>
-            <ColumnDefinition Width="1*" MinWidth="80"/>
+            <ColumnDefinition Width="3*" MinWidth="310" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="1*" MinWidth="80" />
+            <ColumnDefinition Width="1*" MinWidth="150" />
+            <ColumnDefinition Width="1*" MinWidth="80" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -25,11 +25,13 @@
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
         <TextBlock Text="Files Location" Name="filesLocationLabel"
-               Grid.Row="1" Grid.Column="1"/>
-        <TextBlock Text="Files" Name="fLabel"  
-               Grid.Row="3" Grid.Column="1"/>
+                   Grid.Row="1" Grid.Column="1" />
+        <TextBlock Text="Files" Name="fLabel" 
+                   HorizontalAlignment="Center"
+                   Grid.Row="3" Grid.Column="1"/>
         <TextBlock Text="Backups" Name="bLabel" 
-               Grid.Row="3" Grid.Column="4"/>
+                   HorizontalAlignment="Center"
+                   Grid.Row="3" Grid.Column="4"/>
         <Button Content="Change files source" Name="filesLocationButton" 
                 VerticalAlignment="Center" HorizontalAlignment="Center" 
                 Grid.Row="1" Grid.Column="4" MinWidth="150"
@@ -48,7 +50,7 @@
                 Click="backupButton_Click"/>
         <Button Content="Unselect" Name="unselectButton" 
                 VerticalAlignment="Center" HorizontalAlignment="Center" 
-                Grid.Row="2" Grid.Column="3" MinWidth="80"
+                Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" MinWidth="80"
                 Click="unselectButton_Click"/>
         <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Name="filesList" 
                  Grid.Row="4" Grid.Column="1"/>

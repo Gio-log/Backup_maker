@@ -12,9 +12,9 @@ namespace Backup_Maker
         {
             InitializeComponent();
             dataFileExists();
-            BackupMaker_Load();
+            mainWindow_Load();
         }
-        private void BackupMaker_Load()
+        private void mainWindow_Load()
         {
             string file = filesLocationLabel.Text;
             listBox_Load(filesList, file);
@@ -45,7 +45,7 @@ namespace Backup_Maker
                     filesLocationLabel.Text = dialog.FolderName;
                 }
             }
-            BackupMaker_Load();
+            mainWindow_Load();
         }
 
         private void restoreButton_Click(object sender, RoutedEventArgs e)
@@ -60,7 +60,7 @@ namespace Backup_Maker
             deleteFiles(filesList, filesLocationLabel.Text);
             deleteFiles(backupsList, filesLocationLabel.Text + "\\backup");
             unselect();
-            BackupMaker_Load();
+            mainWindow_Load();
         }
 
         private void backupButton_Click(object sender, RoutedEventArgs e)
