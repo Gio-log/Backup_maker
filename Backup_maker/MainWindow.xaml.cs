@@ -1,7 +1,7 @@
-﻿using System.IO;
+﻿using Microsoft.Win32;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Forms = System.Windows.Forms;
 
 namespace Backup_Maker
 {
@@ -33,12 +33,16 @@ namespace Backup_Maker
         private void filesLocationButton_Click(object sender, RoutedEventArgs e)
         {
             string appDataPath = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Backup_maker_data.ini");
-            using (var dialog = new Forms.FolderBrowserDialog())
+            OpenFolderDialog dialog = new OpenFolderDialog
             {
-                if(dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Title = "Select Folder",
+                InitialDirectory = filesLocationLabel.Text
+            };
+            {
+                if (dialog.ShowDialog() == true)
                 {
-                    File.WriteAllText(appDataPath, dialog.SelectedPath);
-                    filesLocationLabel.Text = dialog.SelectedPath;
+                    File.WriteAllText(appDataPath, dialog.FolderName);
+                    filesLocationLabel.Text = dialog.FolderName;
                 }
             }
             BackupMaker_Load();
