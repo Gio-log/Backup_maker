@@ -24,12 +24,12 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Files Location" Name="filesLocationLabel"
+        <TextBlock Text="Files Location" Name="filesLocationTextBox"
                    Grid.Row="1" Grid.Column="1" />
-        <TextBlock Text="Files" Name="fLabel" 
+        <Label Content="Files" Name="fLabel" 
                    HorizontalAlignment="Center"
                    Grid.Row="3" Grid.Column="1"/>
-        <TextBlock Text="Backups" Name="bLabel" 
+        <Label Content="Backups" Name="bLabel" 
                    HorizontalAlignment="Center"
                    Grid.Row="3" Grid.Column="4"/>
         <Button Content="Change files source" Name="filesLocationButton" 
