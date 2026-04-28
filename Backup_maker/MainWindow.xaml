@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Backup_Maker"
+        xmlns:userControls="clr-namespace:Backup_Maker.Views.UserControls"
         mc:Ignorable="d"
         Title="Backup Maker" Height="500" Width="950" FontSize="15" MinWidth="670" MinHeight="200">
     <Grid>
@@ -24,7 +25,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Files Location" Name="filesLocationTextBlock"
+        <!--<userControls:MenuBar />-->
+        <TextBlock Text="{Binding FilesLocation}" Name="filesLocationTextBlock"
                    Grid.Row="1" Grid.Column="1" />
         <Label Content="Files" Name="fLabel" 
                    HorizontalAlignment="Center"
