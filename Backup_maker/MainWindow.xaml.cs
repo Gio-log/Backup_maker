@@ -16,11 +16,11 @@ namespace Backup_Maker
         }
         private void mainWindow_Load()
         {
-            string file = filesLocationTextBox.Text;
+            string file = filesLocationTextBlock.Text;
             listBox_Load(filesList, file);
-            if (Directory.Exists(filesLocationTextBox.Text + "\\backup"))
+            if (Directory.Exists(filesLocationTextBlock.Text + "\\backup"))
             {
-                listBox_Load(backupsList, filesLocationTextBox.Text + "\\backup");
+                listBox_Load(backupsList, filesLocationTextBlock.Text + "\\backup");
             }
         }
         
@@ -36,13 +36,13 @@ namespace Backup_Maker
             OpenFolderDialog dialog = new OpenFolderDialog
             {
                 Title = "Select Folder",
-                InitialDirectory = filesLocationTextBox.Text
+                InitialDirectory = filesLocationTextBlock.Text
             };
             {
                 if (dialog.ShowDialog() == true)
                 {
                     File.WriteAllText(appDataPath, dialog.FolderName);
-                    filesLocationTextBox.Text = dialog.FolderName;
+                    filesLocationTextBlock.Text = dialog.FolderName;
                 }
             }
             mainWindow_Load();
@@ -50,27 +50,27 @@ namespace Backup_Maker
 
         private void restoreButton_Click(object sender, RoutedEventArgs e)
         {
-            copyFiles(backupsList, filesLocationTextBox.Text + "\\backup", filesLocationTextBox.Text);
-            listBox_Load(filesList, filesLocationTextBox.Text);
+            copyFiles(backupsList, filesLocationTextBlock.Text + "\\backup", filesLocationTextBlock.Text);
+            listBox_Load(filesList, filesLocationTextBlock.Text);
             backupsList.SelectedItem = null;
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            deleteFiles(filesList, filesLocationTextBox.Text);
-            deleteFiles(backupsList, filesLocationTextBox.Text + "\\backup");
+            deleteFiles(filesList, filesLocationTextBlock.Text);
+            deleteFiles(backupsList, filesLocationTextBlock.Text + "\\backup");
             unselect();
             mainWindow_Load();
         }
 
         private void backupButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!Directory.Exists(filesLocationTextBox.Text + "\\backup"))
+            if (!Directory.Exists(filesLocationTextBlock.Text + "\\backup"))
             {
-                Directory.CreateDirectory(filesLocationTextBox.Text + "\\backup");
+                Directory.CreateDirectory(filesLocationTextBlock.Text + "\\backup");
             }
-            copyFiles(filesList, filesLocationTextBox.Text, filesLocationTextBox.Text + "\\backup");
-            listBox_Load(backupsList, filesLocationTextBox.Text + "\\backup");
+            copyFiles(filesList, filesLocationTextBlock.Text, filesLocationTextBlock.Text + "\\backup");
+            listBox_Load(backupsList, filesLocationTextBlock.Text + "\\backup");
             filesList.SelectedItem = null;
         }
 
@@ -116,14 +116,14 @@ namespace Backup_Maker
             if (File.Exists(appDataPath) == false)
             {
                 string startingFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                filesLocationTextBox.Text = startingFolder;
+                filesLocationTextBlock.Text = startingFolder;
                 File.WriteAllText(appDataPath, startingFolder);
             }
             else
             {
                 using (StreamReader reader = new StreamReader(appDataPath))
                 {
-                    filesLocationTextBox.Text = reader.ReadLine();
+                    filesLocationTextBlock.Text = reader.ReadLine();
                 }
             }
         }

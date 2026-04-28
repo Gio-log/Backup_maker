@@ -24,7 +24,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Files Location" Name="filesLocationTextBox"
+        <TextBlock Text="Files Location" Name="filesLocationTextBlock"
                    Grid.Row="1" Grid.Column="1" />
         <Label Content="Files" Name="fLabel" 
                    HorizontalAlignment="Center"
