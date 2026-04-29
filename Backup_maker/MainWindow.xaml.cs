@@ -79,10 +79,13 @@ namespace Backup_Maker
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            deleteFiles(filesList, filesLocation);
-            deleteFiles(backupsList, Path.Combine(filesLocation, "backup"));
-            unselect();
-            mainWindow_Load();
+            if(MessageBox.Show("Are you sure?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                deleteFiles(filesList, filesLocation);
+                deleteFiles(backupsList, Path.Combine(filesLocation, "backup"));
+                unselect();
+                mainWindow_Load();
+            }  
         }
 
         private void backupButton_Click(object sender, RoutedEventArgs e)
