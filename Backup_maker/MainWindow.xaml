@@ -53,7 +53,7 @@
         <Button Content="Unselect" Name="unselectButton"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" MinWidth="80"
-                />
+                Command="{Binding UnselectCommand}"/>
         <DataGrid ItemsSource="{Binding FileDatas}" 
                   SelectedItem="{Binding SelectedFileData}" 
                   Name="filesList"

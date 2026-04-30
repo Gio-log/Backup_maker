@@ -17,5 +17,6 @@ namespace Backup_Maker
             MainWindowViewModel viewModel = new MainWindowViewModel();
             DataContext = viewModel;
         }
+
     }
 }
