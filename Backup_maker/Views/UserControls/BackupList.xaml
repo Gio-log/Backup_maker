@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Backup_Maker.Views.UserControls.BackupList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Backup_Maker.Views.UserControls"
+             xmlns:MVVM="clr-namespace:Backup_Maker.MVVM"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Backups" Name="fLabel" 
+            HorizontalAlignment="Center"/>
+        <DataGrid ItemsSource="{Binding Backups}" 
+            SelectedItem="{Binding SelectedBackup}" 
+            MVVM:DataGridSelectedItemsBehavior.SelectedItems="{Binding SelectedBackups}"
+            x:Name="backupList"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            IsReadOnly="True"
+            SelectionMode="Extended"
+            Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=yyyy.MM.dd HH:mm}" Width="1*" />
+                <DataGridTextColumn Header="Extension" Binding="{Binding Extension}" Width="Auto" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

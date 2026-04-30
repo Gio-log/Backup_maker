@@ -5,6 +5,12 @@
     <Compile Update="Views\UserControls\BackupControls.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UserControls\BackupList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\FileList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UserControls\MenuBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

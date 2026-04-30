@@ -10,17 +10,13 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="3*" MinWidth="310" />
+            <ColumnDefinition Width="1*" MinWidth="320" />
             <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="1*" MinWidth="80" />
-            <ColumnDefinition Width="1*" MinWidth="150" />
-            <ColumnDefinition Width="1*" MinWidth="80" />
+            <ColumnDefinition Width="1*" MinWidth="320" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
@@ -28,53 +24,15 @@
         <!--<userControls:MenuBar />-->
         <TextBlock Text="{Binding FilesLocation}" Name="filesLocationTextBlock"
                    Grid.Row="1" Grid.Column="1" />
-        <Label Content="Files" Name="fLabel" 
-                   HorizontalAlignment="Center"
-                   Grid.Row="3" Grid.Column="1"/>
         <Label Content="Backups" Name="bLabel" 
                    HorizontalAlignment="Center"
                    Grid.Row="3" Grid.Column="4"/>
-        <Button Content="Change files source" Name="filesLocationButton" 
-                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                Grid.Row="1" Grid.Column="4" MinWidth="150"
-                />
-        <Button Content="Restore" Name="restoreButton" 
-                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                Grid.Row="1" Grid.Column="5" MinWidth="80"
-                />
-        <Button Content="Delete selected files" Name="deleteButton" 
-                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                Grid.Row="2" Grid.Column="4" MinWidth="150"
-                />
-        <Button Content="Backup" Name="backupButton" 
-                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                Grid.Row="2" Grid.Column="5" MinWidth="80"
-                />
-        <Button Content="Unselect" Name="unselectButton"
-                VerticalAlignment="Center" HorizontalAlignment="Center"
-                Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" MinWidth="80"
-                Command="{Binding UnselectCommand}"/>
-        <DataGrid ItemsSource="{Binding FileDatas}" 
-                  SelectedItem="{Binding SelectedFileData}" 
-                  Name="filesList"
-                  AutoGenerateColumns="False"
-                  Grid.Row="4" Grid.Column="1">
-                  <DataGrid.Columns>
-                      <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
-                      <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="1*" />
-                      <DataGridTextColumn Header="Extension" Binding="{Binding Extension}" Width="Auto" />
-                  </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid ItemsSource="{Binding Backup}" 
-                  SelectedItem="{Binding SelectedBackup}" 
-                  Name="backupsList" 
-                  AutoGenerateColumns="False"
-                  Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3">
-                  <DataGrid.Columns>
-                      <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
-                      <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="1*" />
-                      <DataGridTextColumn Header="Extension" Binding="{Binding Extension}" Width="Auto" />
-                  </DataGrid.Columns>
-        </DataGrid>
+        <userControls:BackupControls 
+            Grid.Row="1" Grid.Column="3"
+            />
+        <userControls:FileList 
+            Grid.Row="2" Grid.Column="1"/>
+        <userControls:BackupList 
+            Grid.Row="2" Grid.Column="3"/>
     </Grid>
 </Window>
