@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Backup_Maker.Views.UserControls.SearchBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Backup_Maker.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="400">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="txtInput" Text="{Binding SearchFile, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" 
+                 Height="25" FontSize="16" FontWeight="Light" Background="Transparent" TextChanged="txtInput_TextChanged"
+                 Grid.Row="1"/>
+        <TextBlock x:Name="tbPlaceholder" Panel.ZIndex="-1" 
+                   Text="Input text to search a file" FontSize="15" 
+                   FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Row="1"/>
+    </Grid>
+</UserControl>

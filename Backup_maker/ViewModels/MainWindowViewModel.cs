@@ -12,6 +12,7 @@ namespace Backup_Maker.ViewModels
         private string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Backup_maker_data.ini");
 
         private string backupPath;
+
         public ObservableCollection<FileData> FileDatas { get; set; }
         public ObservableCollection<Backup> Backups { get; set; }
 
@@ -37,6 +38,11 @@ namespace Backup_Maker.ViewModels
         private Backup selectedBackup;
 
         private string filesLocation;
+
+        private string searchFile;
+
+        private string searchBackup;
+
 
         public FileData SelectedFileData
         {
@@ -68,6 +74,29 @@ namespace Backup_Maker.ViewModels
             }
         }
 
+        public string SearchFile
+        {
+            get { return searchFile; }
+            set
+            {
+                searchFile = value;
+                OnPropertyChanged();
+                FilterFiles();
+            }
+        }
+
+        public string SearchBackup
+        {
+            get { return searchBackup; }
+            set
+            {
+                searchBackup = value;
+                OnPropertyChanged();
+                FilterBackups();
+            }
+        }
+
+
 
         private void mainWindow_Load()
         {
@@ -82,7 +111,7 @@ namespace Backup_Maker.ViewModels
             }
         }
 
-        private void Data_Load(string path)
+        public void Data_Load(string path)
         {
             FileDatas.Clear();
 
@@ -98,7 +127,7 @@ namespace Backup_Maker.ViewModels
             }
         }
 
-        private void Backup_Load(string path)
+        public void Backup_Load(string path)
         {
             Backups.Clear();
             
@@ -115,6 +144,35 @@ namespace Backup_Maker.ViewModels
         }
 
 
+        private void FilterFiles()
+        {
+            var all = Directory.GetFiles(filesLocation);
+            FileDatas.Clear();
+            foreach (var file in all.Where(f => string.IsNullOrEmpty(searchFile) || Path.GetFileName(f).Contains(searchFile, StringComparison.OrdinalIgnoreCase)))
+            {
+                FileDatas.Add(new FileData 
+                {
+                    Name = Path.GetFileNameWithoutExtension(file),
+                    Date = Directory.GetLastWriteTime(file),
+                    Extension = Path.GetExtension(file)
+                });
+            }
+        }
+
+        private void FilterBackups()
+        {
+            var all = Directory.GetFiles(backupPath);
+            Backups.Clear();
+            foreach (var file in all.Where(f => string.IsNullOrEmpty(searchBackup) || Path.GetFileName(f).Contains(searchBackup, StringComparison.OrdinalIgnoreCase)))
+            {
+                Backups.Add(new Backup
+                {
+                    Name = Path.GetFileNameWithoutExtension(file),
+                    Date = Directory.GetLastWriteTime(file),
+                    Extension = Path.GetExtension(file)
+                });
+            }
+        }
 
         private void restoreFunction()
         {

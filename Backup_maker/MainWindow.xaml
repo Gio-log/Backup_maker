@@ -18,6 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
@@ -28,11 +29,14 @@
                    HorizontalAlignment="Center"
                    Grid.Row="3" Grid.Column="4"/>
         <userControls:BackupControls 
-            Grid.Row="1" Grid.Column="3"
-            />
-        <userControls:FileList 
+            Grid.Row="1" Grid.Column="3"/>
+        <userControls:SearchBar SearchFile="{Binding SearchFile, Mode=TwoWay}"
             Grid.Row="2" Grid.Column="1"/>
+        <userControls:SearchBar SearchFile="{Binding SearchBackup, Mode=TwoWay}"
+    Grid.Row="2" Grid.Column="3"/>
+        <userControls:FileList 
+            Grid.Row="3" Grid.Column="1"/>
         <userControls:BackupList 
-            Grid.Row="2" Grid.Column="3"/>
+            Grid.Row="3" Grid.Column="3"/>
     </Grid>
 </Window>
