@@ -81,7 +81,7 @@ namespace Backup_Maker.ViewModels
             {
                 searchFile = value;
                 OnPropertyChanged();
-                FilterFiles();
+                Data_Load();
             }
         }
 
@@ -92,7 +92,7 @@ namespace Backup_Maker.ViewModels
             {
                 searchBackup = value;
                 OnPropertyChanged();
-                FilterBackups();
+                Backup_Load();
             }
         }
 
@@ -100,10 +100,10 @@ namespace Backup_Maker.ViewModels
 
         private void mainWindow_Load()
         {
-            Data_Load(filesLocation);
+            Data_Load();
             if (Directory.Exists(backupPath))
             {
-                Backup_Load(backupPath);
+                Backup_Load();
             }
             else
             {
@@ -111,12 +111,12 @@ namespace Backup_Maker.ViewModels
             }
         }
 
-        public void Data_Load(string path)
+        public void Data_Load()
         {
+            if (!Directory.Exists(filesLocation)) return;
+            var all = Directory.GetFiles(filesLocation);
             FileDatas.Clear();
-
-            var files = Directory.GetFiles(path);
-            foreach (var file in files)
+            foreach (var file in all.Where(f => string.IsNullOrEmpty(searchFile) || Path.GetFileName(f).Contains(searchFile, StringComparison.OrdinalIgnoreCase)))
             {
                 FileDatas.Add(new FileData
                 {
@@ -127,40 +127,9 @@ namespace Backup_Maker.ViewModels
             }
         }
 
-        public void Backup_Load(string path)
+        public void Backup_Load()
         {
-            Backups.Clear();
-            
-            var files = Directory.GetFiles(path);
-            foreach (var file in files)
-            {
-                Backups.Add(new Backup
-                {
-                    Name = Path.GetFileNameWithoutExtension(file),
-                    Date = Directory.GetLastWriteTime(file),
-                    Extension = Path.GetExtension(file)
-                });
-            }
-        }
-
-
-        private void FilterFiles()
-        {
-            var all = Directory.GetFiles(filesLocation);
-            FileDatas.Clear();
-            foreach (var file in all.Where(f => string.IsNullOrEmpty(searchFile) || Path.GetFileName(f).Contains(searchFile, StringComparison.OrdinalIgnoreCase)))
-            {
-                FileDatas.Add(new FileData 
-                {
-                    Name = Path.GetFileNameWithoutExtension(file),
-                    Date = Directory.GetLastWriteTime(file),
-                    Extension = Path.GetExtension(file)
-                });
-            }
-        }
-
-        private void FilterBackups()
-        {
+            if (!Directory.Exists(backupPath)) return;
             var all = Directory.GetFiles(backupPath);
             Backups.Clear();
             foreach (var file in all.Where(f => string.IsNullOrEmpty(searchBackup) || Path.GetFileName(f).Contains(searchBackup, StringComparison.OrdinalIgnoreCase)))
@@ -178,7 +147,7 @@ namespace Backup_Maker.ViewModels
         {
             SelectedFileData = null;
             copyFiles(backupPath, filesLocation);
-            Data_Load(filesLocation);
+            Data_Load();
             SelectedBackup = null;
         }
 
@@ -190,7 +159,7 @@ namespace Backup_Maker.ViewModels
                 Directory.CreateDirectory(backupPath);
             }
             copyFiles(filesLocation, backupPath);
-            Backup_Load(backupPath);
+            Backup_Load();
             SelectedFileData = null;
         }
 
