@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Backup_Maker"
         xmlns:userControls="clr-namespace:Backup_Maker.Views.UserControls"
         mc:Ignorable="d"
-        Title="Backup Maker" Height="500" Width="950" FontSize="15" MinWidth="670" MinHeight="200">
+        Title="Backup Maker" Height="500" Width="950" FontSize="15" MinWidth="690" MinHeight="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
@@ -25,16 +25,13 @@
         <!--<userControls:MenuBar />-->
         <TextBlock Text="{Binding FilesLocation}" Name="filesLocationTextBlock"
                    Grid.Row="1" Grid.Column="1" />
-        <Label Content="Backups" Name="bLabel" 
-                   HorizontalAlignment="Center"
-                   Grid.Row="3" Grid.Column="4"/>
         <userControls:BackupControls 
             Grid.Row="1" Grid.Column="3"/>
         <GridSplitter Grid.Column="2" Grid.RowSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-        <userControls:SearchBar SearchFile="{Binding SearchFile, Mode=TwoWay}"
+        <userControls:SearchBar SearchFile="{Binding SearchFile, Mode=TwoWay}" Placeholder="Input text to search a file"
             Grid.Row="2" Grid.Column="1"/>
-        <userControls:SearchBar SearchFile="{Binding SearchBackup, Mode=TwoWay}"
-    Grid.Row="2" Grid.Column="3"/>
+        <userControls:SearchBar SearchFile="{Binding SearchBackup, Mode=TwoWay}" Placeholder="Input text to search a backup"
+            Grid.Row="2" Grid.Column="3"/>
         <userControls:FileList 
             Label="Files"
             ItemsSource="{Binding FileDatas}"

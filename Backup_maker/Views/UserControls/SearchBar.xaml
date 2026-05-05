@@ -15,8 +15,8 @@
                  Height="25" FontSize="16" FontWeight="Light" Background="Transparent" TextChanged="txtInput_TextChanged"
                  Grid.Row="1"/>
         <TextBlock x:Name="tbPlaceholder" Panel.ZIndex="-1" 
-                   Text="Input text to search a file" FontSize="15" 
-                   FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="{Binding Placeholder, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="15" 
+                   FontWeight="Medium" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Grid.Row="1"/>
     </Grid>
 </UserControl>
