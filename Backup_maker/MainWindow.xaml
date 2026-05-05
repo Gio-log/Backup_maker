@@ -30,6 +30,7 @@
                    Grid.Row="3" Grid.Column="4"/>
         <userControls:BackupControls 
             Grid.Row="1" Grid.Column="3"/>
+        <GridSplitter Grid.Column="2" Grid.RowSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <userControls:SearchBar SearchFile="{Binding SearchFile, Mode=TwoWay}"
             Grid.Row="2" Grid.Column="1"/>
         <userControls:SearchBar SearchFile="{Binding SearchBackup, Mode=TwoWay}"
