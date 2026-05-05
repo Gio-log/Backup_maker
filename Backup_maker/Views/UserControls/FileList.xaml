@@ -12,11 +12,11 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="Files" Name="fLabel" 
+        <Label Content="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}}" Name="fLabel" 
            HorizontalAlignment="Center"/>
-        <DataGrid ItemsSource="{Binding FileDatas}" 
-          SelectedItem="{Binding SelectedFileData}" 
-          MVVM:DataGridSelectedItemsBehavior.SelectedItems="{Binding SelectedFiles}"
+        <DataGrid ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" 
+          SelectedItem="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" 
+          MVVM:DataGridSelectedItemsBehavior.SelectedItems="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
           x:Name="fileList"
           AutoGenerateColumns="False"
           CanUserAddRows="False"
