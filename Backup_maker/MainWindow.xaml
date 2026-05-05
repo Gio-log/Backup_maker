@@ -35,8 +35,16 @@
         <userControls:SearchBar SearchFile="{Binding SearchBackup, Mode=TwoWay}"
     Grid.Row="2" Grid.Column="3"/>
         <userControls:FileList 
+            Label="Files"
+            ItemsSource="{Binding FileDatas}"
+            SelectedItem="{Binding SelectedFileData, Mode=TwoWay}"
+            SelectedItems="{Binding SelectedFiles, Mode=OneWay}"
             Grid.Row="3" Grid.Column="1"/>
-        <userControls:BackupList 
+        <userControls:FileList 
+            Label="Backups"
+            ItemsSource="{Binding Backups}"
+            SelectedItem="{Binding SelectedBackup, Mode=TwoWay}"
+            SelectedItems="{Binding SelectedBackups, Mode=OneWay}"
             Grid.Row="3" Grid.Column="3"/>
     </Grid>
 </Window>
