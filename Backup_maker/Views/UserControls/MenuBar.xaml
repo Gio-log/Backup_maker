@@ -5,17 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Backup_Maker.Views.UserControls"
              mc:Ignorable="d" 
+             Background="Transparent"
              Height="40" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
-        <Menu>
-            <MenuItem Header="File" FontSize="16">
-                <MenuItem Header="Exit" />
-            </MenuItem>
-            <MenuItem Header="Edit" FontSize="16" />
-        </Menu>
+        <TextBlock Text="Backup Maker" VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="#333333">
+            
+        </StackPanel>
     </Grid>
 </UserControl>
