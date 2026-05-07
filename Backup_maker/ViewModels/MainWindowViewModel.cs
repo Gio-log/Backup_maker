@@ -121,7 +121,7 @@ namespace Backup_Maker.ViewModels
                 FileDatas.Add(new FileData
                 {
                     Name = Path.GetFileNameWithoutExtension(file),
-                    Date = Directory.GetLastWriteTime(file),
+                    Date = File.GetLastWriteTime(file),
                     Extension = Path.GetExtension(file)
                 });
             }

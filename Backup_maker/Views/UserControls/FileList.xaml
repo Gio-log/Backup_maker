@@ -13,17 +13,58 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Content="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}}" Name="fLabel" 
-           HorizontalAlignment="Center"/>
+           HorizontalAlignment="Center" Foreground="White"/>
         <DataGrid ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" 
           SelectedItem="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" 
           MVVM:DataGridSelectedItemsBehavior.SelectedItems="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
           x:Name="fileList"
+          HeadersVisibility="Column"
+          VirtualizingPanel.ScrollUnit="Pixel"
+          Background="#282828"
+          Foreground="White"
+          BorderBrush="#383838"
+          RowBackground="#282828"
+          AlternatingRowBackground="#303030"
+          HorizontalGridLinesBrush="#383838"
+          VerticalGridLinesBrush="#383838"
           AutoGenerateColumns="False"
           CanUserAddRows="False"
           CanUserDeleteRows="False"
           IsReadOnly="True"
           SelectionMode="Extended"
           Grid.Row="1">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#383838"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="#484848"/>
+                    <Setter Property="Padding" Value="5,3"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#484848"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#484848"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#404040"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
                 <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=yyyy.MM.dd HH:mm}" Width="1*" />

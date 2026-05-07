@@ -6,17 +6,18 @@
              xmlns:local="clr-namespace:Backup_Maker.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="400">
-    <Grid Background="White">
+    <Grid Background="#282828">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5"/>
+            <RowDefinition Height="5" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Rectangle Grid.Row="1" Fill="#565656"/>
         <TextBox x:Name="txtInput" Text="{Binding SearchFile, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" 
-                 Height="25" FontSize="16" FontWeight="Light" Background="Transparent" TextChanged="txtInput_TextChanged"
+                 Height="25" FontSize="16" FontWeight="Light" Background="Transparent" Foreground="White" TextChanged="txtInput_TextChanged"
                  Grid.Row="1"/>
-        <TextBlock x:Name="tbPlaceholder" Panel.ZIndex="-1" 
+        <TextBlock x:Name="tbPlaceholder" Panel.ZIndex="0" 
                    Text="{Binding Placeholder, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="15" 
-                   FontWeight="Medium" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontWeight="Medium" FontStyle="Italic" Background="Transparent" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
                    Grid.Row="1"/>
     </Grid>
 </UserControl>

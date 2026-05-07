@@ -11,7 +11,7 @@
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0" />
     </WindowChrome.WindowChrome>
-    <Grid>
+    <Grid Background="#282828">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="1*" MinWidth="320" />
@@ -28,11 +28,11 @@
         </Grid.RowDefinitions>
         <userControls:TitleBar 
             Grid.Row="0" Grid.ColumnSpan="5"/>
-        <TextBlock Text="{Binding FilesLocation}" Name="filesLocationTextBlock"
-                   Grid.Row="1" Grid.Column="1" />
+        <TextBlock Text="{Binding FilesLocation}" Name="filesLocationTextBlock" Foreground="White"
+                   Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
         <userControls:BackupControls 
             Grid.Row="1" Grid.Column="3"/>
-        <GridSplitter Background="Transparent" Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <GridSplitter Background="#252525" Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <userControls:SearchBar SearchFile="{Binding SearchFile, Mode=TwoWay}" Placeholder="Input text to search a file"
             Grid.Row="2" Grid.Column="1"/>
         <userControls:SearchBar SearchFile="{Binding SearchBackup, Mode=TwoWay}" Placeholder="Input text to search a backup"
