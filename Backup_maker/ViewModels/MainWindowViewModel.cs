@@ -51,6 +51,12 @@ namespace Backup_Maker.ViewModels
             { 
                 selectedFileData = value;
                 OnPropertyChanged();
+                if (value != null)
+                {
+                    selectedBackup = null;
+                    SelectedBackups.Clear();
+                    OnPropertyChanged(nameof(SelectedBackup));
+                }
             }
         }
 
@@ -61,6 +67,12 @@ namespace Backup_Maker.ViewModels
             {
                 selectedBackup = value;
                 OnPropertyChanged();
+                if (value != null)
+                {
+                    selectedFileData = null;
+                    SelectedFiles.Clear();
+                    OnPropertyChanged(nameof(SelectedFileData));
+                }
             }
         }
 
