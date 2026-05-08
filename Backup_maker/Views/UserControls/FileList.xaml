@@ -12,6 +12,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Rectangle Fill="#232323" />
         <Label Content="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}}" Name="fLabel" 
            HorizontalAlignment="Center" Foreground="White"/>
         <DataGrid ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" 

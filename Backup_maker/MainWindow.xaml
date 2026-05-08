@@ -22,8 +22,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
         <userControls:TitleBar 
@@ -32,22 +32,22 @@
                    Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
         <userControls:BackupControls 
             Grid.Row="1" Grid.Column="3"/>
-        <GridSplitter Background="#252525" Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <GridSplitter Background="#252525" Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <userControls:SearchBar SearchFile="{Binding SearchFile, Mode=TwoWay}" Placeholder="Input text to search a file"
-            Grid.Row="2" Grid.Column="1"/>
+            Grid.Row="3" Grid.Column="1"/>
         <userControls:SearchBar SearchFile="{Binding SearchBackup, Mode=TwoWay}" Placeholder="Input text to search a backup"
-            Grid.Row="2" Grid.Column="3"/>
+            Grid.Row="3" Grid.Column="3"/>
         <userControls:FileList 
             Label="Files"
             ItemsSource="{Binding FileDatas}"
             SelectedItem="{Binding SelectedFileData, Mode=TwoWay}"
             SelectedItems="{Binding SelectedFiles, Mode=OneWay}"
-            Grid.Row="3" Grid.Column="1"/>
+            Grid.Row="2" Grid.Column="1"/>
         <userControls:FileList 
             Label="Backups"
             ItemsSource="{Binding Backups}"
             SelectedItem="{Binding SelectedBackup, Mode=TwoWay}"
             SelectedItems="{Binding SelectedBackups, Mode=OneWay}"
-            Grid.Row="3" Grid.Column="3"/>
+            Grid.Row="2" Grid.Column="3"/>
     </Grid>
 </Window>
