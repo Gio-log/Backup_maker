@@ -206,14 +206,15 @@ namespace Backup_Maker.ViewModels
                 } while (File.Exists(pathb));
                 File.Copy(patha, pathb);
             }
+            MessageBox.Show($"Backup complete. {files.Count()} file(s) copied.", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void deleteFiles()
         {
-            if (MessageBox.Show("Are you sure?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            bool useBackups = SelectedBackups.Any();
+            IEnumerable<IFileEntry> files = useBackups ? SelectedBackups : SelectedFiles;
+            string location = useBackups ? backupPath : filesLocation;
+            if (MessageBox.Show($"Do you want to delete {files.Count()} files?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                bool useBackups = SelectedBackups.Any();
-                IEnumerable<IFileEntry> files = useBackups ? SelectedBackups : SelectedFiles;
-                string location = useBackups ? backupPath : filesLocation;
                 foreach (var file in files)
                 {
                     string path = Path.Combine(location, file.Name + file.Extension);
@@ -222,6 +223,7 @@ namespace Backup_Maker.ViewModels
             }
             unselect();
             mainWindow_Load();
+            MessageBox.Show($"Files removed.", "Delete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void filesLocationChange()
