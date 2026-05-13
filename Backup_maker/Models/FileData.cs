@@ -1,6 +1,6 @@
 ﻿namespace Backup_Maker.Models
 {
-    class FileData
+    class FileData : IFileEntry
     {
         public string Name { get; set; }
         public DateTime Date { get; set; }

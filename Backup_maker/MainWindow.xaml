@@ -28,8 +28,17 @@
         </Grid.RowDefinitions>
         <userControls:TitleBar 
             Grid.Row="0" Grid.ColumnSpan="5"/>
-        <TextBlock Text="{Binding FilesLocation}" Name="filesLocationTextBlock" Foreground="White"
-                   Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding FilesLocation}" Name="filesLocationTextBlock" Foreground="White"
+                       Grid.Row="0" VerticalAlignment="Center" />
+            <CheckBox Content="Overwrite"
+                      Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Bottom"
+                      Grid.Row="1" IsChecked="{Binding Overwrite}"/>
+        </Grid>
         <userControls:BackupControls 
             Grid.Row="1" Grid.Column="3"/>
         <GridSplitter Background="#252525" Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />

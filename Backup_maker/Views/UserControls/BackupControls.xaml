@@ -34,9 +34,7 @@
         Command="{Binding backupCommand}"/>
         <Button Content="Unselect" x:Name="unselectButton" 
         VerticalAlignment="Center" HorizontalAlignment="Center" 
-        Grid.Row="0" Grid.Column="0" MinWidth="80"
+        Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" MinWidth="80"
         Command="{Binding unselectCommand}"/>
-        <CheckBox Content="Overwrite"
-        Grid.Row="1" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

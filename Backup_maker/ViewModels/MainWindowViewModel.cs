@@ -43,6 +43,8 @@ namespace Backup_Maker.ViewModels
 
         private string searchBackup;
 
+        private bool overwrite;
+
 
         public FileData SelectedFileData
         {
@@ -108,6 +110,16 @@ namespace Backup_Maker.ViewModels
             }
         }
 
+        public bool Overwrite
+        {
+            get { return overwrite; }
+            set
+            {
+                overwrite = value;
+                OnPropertyChanged();
+            }
+        }
+
 
 
         private void mainWindow_Load()
@@ -158,7 +170,7 @@ namespace Backup_Maker.ViewModels
         private void restoreFunction()
         {
             SelectedFileData = null;
-            copyFiles(backupPath, filesLocation);
+            copyFiles(backupPath, filesLocation, SelectedBackups);
             Data_Load();
             SelectedBackup = null;
         }
@@ -170,39 +182,31 @@ namespace Backup_Maker.ViewModels
             {
                 Directory.CreateDirectory(backupPath);
             }
-            copyFiles(filesLocation, backupPath);
+            copyFiles(filesLocation, backupPath, SelectedFiles);
             Backup_Load();
             SelectedFileData = null;
         }
 
-        private void copyFiles(string firstPath, string secondPath)
+        private void copyFiles(string firstPath, string secondPath, IEnumerable<IFileEntry> files)
         {
-            //bool replace = overwriteCB.Checked;
-            foreach (var file in SelectedBackups)
+            bool replace = overwrite;
+            foreach (var file in files)
             {
                 string patha = Path.Combine(firstPath, file.Name + file.Extension);
                 string pathb = Path.Combine(secondPath, file.Name + file.Extension);
                 File.Copy(patha,pathb, true);
-            }
-            foreach (var file in SelectedFiles)
-            {
-                string patha = Path.Combine(firstPath, file.Name + file.Extension);
-                string pathb = Path.Combine(secondPath, file.Name + file.Extension);
-                File.Copy(patha, pathb, true);
             }
         }
         private void deleteFiles()
         {
             if (MessageBox.Show("Are you sure?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                foreach (var file in SelectedBackups)
+                bool useBackups = SelectedBackups.Any();
+                IEnumerable<IFileEntry> files = useBackups ? SelectedBackups : SelectedFiles;
+                string location = useBackups ? backupPath : filesLocation;
+                foreach (var file in files)
                 {
-                    string path = Path.Combine(backupPath, file.Name + file.Extension);
-                    File.Delete(path);
-                }
-                foreach (var file in SelectedFiles)
-                {
-                    string path = Path.Combine(filesLocation, file.Name + file.Extension);
+                    string path = Path.Combine(location, file.Name + file.Extension);
                     File.Delete(path);
                 }
             }
