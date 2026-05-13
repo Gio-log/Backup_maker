@@ -189,12 +189,22 @@ namespace Backup_Maker.ViewModels
 
         private void copyFiles(string firstPath, string secondPath, IEnumerable<IFileEntry> files)
         {
-            bool replace = overwrite;
             foreach (var file in files)
             {
                 string patha = Path.Combine(firstPath, file.Name + file.Extension);
                 string pathb = Path.Combine(secondPath, file.Name + file.Extension);
-                File.Copy(patha,pathb, true);
+                if (File.Exists(pathb) == false || overwrite == true)
+                {
+                    File.Copy(patha, pathb, true);
+                    continue;
+                }
+                int count = 1;
+                do
+                {
+                    pathb = Path.Combine(secondPath, file.Name + $"({count})" + file.Extension);
+                    count++;
+                } while (File.Exists(pathb));
+                File.Copy(patha, pathb);
             }
         }
         private void deleteFiles()
