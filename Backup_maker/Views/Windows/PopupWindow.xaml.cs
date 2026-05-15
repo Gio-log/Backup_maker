@@ -19,6 +19,8 @@ namespace Backup_Maker.Views.Windows
         {
             InitializeComponent();
             DataContext = this;
+            Owner = Application.Current.MainWindow;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
             WindowTitle = title;
             Message = message;
 
