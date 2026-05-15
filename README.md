@@ -2,4 +2,4 @@
 A simple App to automaticaly make backups of files made in C#.
 
 <h1>Download</h1>
-To use this app download the Backup_Maker_0.4 zip, unpack and launch the exe file.
+To use this app download the Backup_Maker_1.0 zip, unpack and launch the exe file.
