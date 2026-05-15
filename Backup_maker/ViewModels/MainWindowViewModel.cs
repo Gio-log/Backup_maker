@@ -1,5 +1,6 @@
 ﻿using Backup_Maker.Models;
 using Backup_Maker.MVVM;
+using Backup_Maker.Views.Windows;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -206,13 +207,13 @@ namespace Backup_Maker.ViewModels
                 } while (File.Exists(pathb));
                 File.Copy(patha, pathb);
             }
-            MessageBox.Show($"Backup complete. {files.Count()} file(s) copied.", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
+            new PopupWindow("Backup", $"Backup complete. {files.Count()} file(s) copied.", PopupButtons.OK).ShowDialog();
         }
         private void deleteFiles()
         {
             bool useBackups = SelectedBackups.Any();
             IEnumerable<IFileEntry> files = useBackups ? SelectedBackups : SelectedFiles;
-            if (MessageBox.Show($"Do you want to delete {files.Count()} files?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (new PopupWindow("Delete", $"Do you want to delete {files.Count()} file(s)?", PopupButtons.YesNo).ShowDialog() == true)
             {
                 string location = useBackups ? backupPath : filesLocation;
                 foreach (var file in files)
@@ -220,7 +221,7 @@ namespace Backup_Maker.ViewModels
                     string path = Path.Combine(location, file.Name + file.Extension);
                     File.Delete(path);
                 }
-                MessageBox.Show("Files removed.", "Delete", MessageBoxButton.OK, MessageBoxImage.Information);
+                new PopupWindow("Delete", "Files removed.", PopupButtons.OK).ShowDialog();
             }
             unselect();
             mainWindow_Load();
