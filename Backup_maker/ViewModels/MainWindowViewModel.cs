@@ -170,6 +170,11 @@ namespace Backup_Maker.ViewModels
 
         private void restoreFunction()
         {
+            if (folderCheck(backupPath))
+            {
+                Backups.Clear();
+                return;
+            }
             SelectedFileData = null;
             copyFiles(backupPath, filesLocation, SelectedBackups);
             Data_Load();
@@ -178,6 +183,11 @@ namespace Backup_Maker.ViewModels
 
         private void backupFunction()
         {
+            if (folderCheck(filesLocation))
+            {
+                FileDatas.Clear();
+                return;
+            }
             SelectedBackup = null;
             if (!Directory.Exists(backupPath))
             {
@@ -190,9 +200,15 @@ namespace Backup_Maker.ViewModels
 
         private void copyFiles(string firstPath, string secondPath, IEnumerable<IFileEntry> files)
         {
+            List<string> missingFiles = new List<string>();
             foreach (var file in files)
             {
                 string patha = Path.Combine(firstPath, file.Name + file.Extension);
+                if (!File.Exists(patha))
+                {
+                    missingFiles.Add(file.Name);
+                    continue;
+                }
                 string pathb = Path.Combine(secondPath, file.Name + file.Extension);
                 if (File.Exists(pathb) == false || overwrite == true)
                 {
@@ -207,19 +223,56 @@ namespace Backup_Maker.ViewModels
                 } while (File.Exists(pathb));
                 File.Copy(patha, pathb);
             }
-            new PopupWindow("Backup", $"Backup complete. {files.Count()} file(s) copied.", PopupButtons.OK).ShowDialog();
+            if (missingFiles.Any())
+            {
+                string missingMsg = missingFiles.Count() == 1
+                    ? $"File not found {missingFiles[0]}."
+                    : $"File not found {missingFiles[0]} and {missingFiles.Count() - 1} more.";
+                new PopupWindow("Backup", missingMsg, PopupButtons.OK).ShowDialog();
+                new PopupWindow("Backup", $"Backup complete. {files.Count() - missingFiles.Count()} file(s) copied.", PopupButtons.OK).ShowDialog();
+                mainWindow_Load();
+            }
+            else
+            {
+                new PopupWindow("Backup", $"Backup complete. {files.Count()} file(s) copied.", PopupButtons.OK).ShowDialog();
+            }
         }
         private void deleteFiles()
         {
+            List<string> missingFiles = new List<string>();
             bool useBackups = SelectedBackups.Any();
             IEnumerable<IFileEntry> files = useBackups ? SelectedBackups : SelectedFiles;
+            string location = useBackups ? backupPath : filesLocation;
+            if (folderCheck(location))
+            {
+                if (useBackups)
+                {
+                    Backups.Clear();
+                }
+                else
+                {
+                    FileDatas.Clear();
+                }
+                return;
+            }
             if (new PopupWindow("Delete", $"Do you want to delete {files.Count()} file(s)?", PopupButtons.YesNo).ShowDialog() == true)
             {
-                string location = useBackups ? backupPath : filesLocation;
                 foreach (var file in files)
                 {
                     string path = Path.Combine(location, file.Name + file.Extension);
-                    File.Delete(path);
+                    if (!File.Exists(path))
+                    {
+                        missingFiles.Add(file.Name);
+                        continue;
+                    }
+                    else
+                    {
+                        File.Delete(path);
+                    }
+                }
+                if(missingFiles.Any())    
+                {
+                    new PopupWindow("Delete", $"Files not found {missingFiles.Count()}", PopupButtons.OK).ShowDialog();
                 }
                 new PopupWindow("Delete", "Files removed.", PopupButtons.OK).ShowDialog();
             }
@@ -229,6 +282,10 @@ namespace Backup_Maker.ViewModels
 
         private void filesLocationChange()
         {
+            if(!Directory.Exists(filesLocation))
+            {
+                filesLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            }
             OpenFolderDialog dialog = new OpenFolderDialog
             {
                 Title = "Select Folder",
@@ -259,6 +316,10 @@ namespace Backup_Maker.ViewModels
                 {
                     filesLocation = reader.ReadLine();
                 }
+                if (!Directory.Exists(filesLocation))
+                {
+                    filesLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                }
             }
             backupPath = Path.Combine(filesLocation, "backup");
         }
@@ -266,6 +327,19 @@ namespace Backup_Maker.ViewModels
         {
             SelectedFileData = null;
             SelectedBackup = null;
+        }
+
+        private bool folderCheck(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                new PopupWindow("Error", "Source folder not found.", PopupButtons.OK).ShowDialog();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

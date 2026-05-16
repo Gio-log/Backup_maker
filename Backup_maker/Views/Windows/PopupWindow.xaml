@@ -7,7 +7,7 @@
         xmlns:userControls="clr-namespace:Backup_Maker.Views.UserControls"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="PopupWindow" Height="200" Width="400" FontSize="15" MinWidth="200" MinHeight="200">
+        Title="PopupWindow" Height="200" Width="500" FontSize="15" MinWidth="200" MinHeight="200">
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0" />
     </WindowChrome.WindowChrome>
