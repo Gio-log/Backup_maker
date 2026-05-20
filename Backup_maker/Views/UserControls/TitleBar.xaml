@@ -12,8 +12,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="18" Foreground="White" VerticalAlignment="Center" FontWeight="Medium" Padding="10,0,0,0" />
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="/Resources/logo.ico"  HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" />
+        <TextBlock Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                   FontSize="18" Foreground="White" 
+                   VerticalAlignment="Center" FontWeight="Medium" Padding="10,0,0,0" Grid.Column="1"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >
             <Button Content="—" Click="Minimize_Click" Width="25" Background="Transparent" Foreground="White" />
             <Button Content="□" Click="Maximize_Click" Width="25" Background="Transparent" Foreground="White" />
             <Button Content="✕" Click="Close_Click" Width="25" Background="Transparent" Foreground="White" />
